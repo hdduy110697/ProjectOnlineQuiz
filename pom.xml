@@ -19,7 +19,7 @@
 		<mysql-connector-java.version>8.0.15</mysql-connector-java.version>
 		<hibernate-core.version>5.4.2.Final</hibernate-core.version>
 		<spring-tx.version>5.1.5.RELEASE</spring-tx.version>
-		<spring.data>1.11.5.RELEASE</spring.data>
+		<spring.data>1.11.23.RELEASE</spring.data>
 
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
