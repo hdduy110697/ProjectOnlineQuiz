@@ -1,0 +1,9 @@
+com\onlinequizz\configuration\LinkConfiguration.class
+com\onlinequizz\configuration\JPAConfig.class
+com\onlinequizz\Entity\Test.class
+com\onlinequizz\configuration\HelloWorldInitializer.class
+com\onlinequizz\Entity\TestQuestion.class
+com\onlinequizz\Entity\TestType.class
+com\onlinequizz\controller\HelloWorldController.class
+com\onlinequizz\Entity\Question.class
+com\onlinequizz\Entity\TestQuestionId.class
