@@ -7,9 +7,9 @@ import java.util.Set;
 @Table(name = "Test_type")
 public class TestType {
     @Id
-    @Column(name = "test_type_id")
+    @Column(name = "test_type_id",length = 10)
     private String testTypeId;
-    @Column(name = "test_type_name")
+    @Column(name = "test_type_name",length = 50)
     private String testTypeName;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)

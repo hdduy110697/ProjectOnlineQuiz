@@ -7,18 +7,18 @@ import java.util.Set;
 @Table(name = "Question")
 public class Question {
     @Id
-    @Column(name = "question_id")
+    @Column(name = "question_id",length = 10)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int questionId;
-    @Column(name = "answer_1")
+    @Column(name = "answer_1",length = 100)
     private String answer_1;
-    @Column(name = "answer_2")
+    @Column(name = "answer_2",length = 100)
     private String answer_2;
-    @Column(name = "answer_3")
+    @Column(name = "answer_3",length = 100)
     private String answer_3;
-    @Column(name = "content")
+    @Column(name = "content",length = 100)
     private String content;
-    @Column(name = "correct_answer")
+    @Column(name = "correct_answer",length = 100)
     private String correctAnswer;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "test_question",joinColumns = {@JoinColumn(name = "question_id",referencedColumnName = "question_id")},
