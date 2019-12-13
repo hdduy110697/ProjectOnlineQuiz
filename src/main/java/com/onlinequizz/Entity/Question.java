@@ -1,6 +1,7 @@
 package com.onlinequizz.Entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "Question")
@@ -19,6 +20,10 @@ public class Question {
     private String content;
     @Column(name = "correct_answer")
     private String correctAnswer;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "test_question",joinColumns = {@JoinColumn(name = "question_id",referencedColumnName = "question_id")},
+            inverseJoinColumns = {@JoinColumn(name = "test_id",referencedColumnName = "test_id")})
+    private Set<Test> questions;
     public int getQuestionId() {
         return questionId;
     }

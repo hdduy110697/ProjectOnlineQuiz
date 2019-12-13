@@ -21,13 +21,24 @@ public class Test {
     private  int testTime;
     @Column(name = "test_type_id")
     private  String testTypeId;
+/*
     @ManyToOne
     @JoinColumn(name = "test_type_id")
     private TestType testType;
+*/
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "question_id")
-    private Set<Question> listQuestion;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "test_question",joinColumns = {@JoinColumn(name = "test_id",referencedColumnName = "test_id")},
+            inverseJoinColumns = {@JoinColumn(name = "question_id",referencedColumnName = "question_id")})
+    private Set<Question> questions;
+
+    public Set<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(Set<Question> questions) {
+        this.questions = questions;
+    }
 
     public String getTestTypeId() {
         return testTypeId;
@@ -35,14 +46,6 @@ public class Test {
 
     public void setTestTypeId(String testTypeId) {
         this.testTypeId = testTypeId;
-    }
-
-    public Set<Question> getListQuestion() {
-        return listQuestion;
-    }
-
-    public void setListQuestion(Set<Question> listQuestion) {
-        this.listQuestion = listQuestion;
     }
 
     public String getTestId() {
@@ -92,12 +95,12 @@ public class Test {
     public void setTestTime(int testTime) {
         this.testTime = testTime;
     }
-
+/*
     public TestType getTestType() {
         return testType;
     }
 
     public void setTestType(TestType testType) {
         this.testType = testType;
-    }
+    }*/
 }

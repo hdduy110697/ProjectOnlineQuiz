@@ -13,13 +13,11 @@ public class HelloWorldInitializer implements WebApplicationInitializer {
 	public void onStartup(ServletContext container) throws ServletException {
 
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-		ctx.register( LinkConfiguration.class);
-		ctx.register( JPAConfig.class);
-		ctx.setServletContext(container);
 
+		ctx.register( LinkConfiguration.class);
+		ctx.setServletContext(container);
 		ServletRegistration.Dynamic servlet = container.addServlet(
 				"dispatcher", new DispatcherServlet(ctx));
-
 		servlet.setLoadOnStartup(1);
 		servlet.addMapping("/");
 	}

@@ -19,14 +19,13 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = "com.onlinequizz")
 @EnableJpaRepositories(basePackages = {"com.onlinequizz.Responsitory"})
 public class JPAConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan ("com.onlinequiz.Entity");
+        em.setPackagesToScan ("com.onlinequizz.Entity");
         //em.setPersistenceUnitName("persistence");
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter ();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -57,10 +56,10 @@ public class JPAConfig {
     }
     Properties additionalProperties() {
         Properties properties = new Properties();
+        properties.setProperty ( "hibernate.dialect","org.hibernate.dialect.MySQL5Dialect" );
 //        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty("hibernate.hbm2ddl.auto", "create");
-        //       properties.setProperty("hibernate.hbm2ddl.auto", "update");//update the schema.
-       properties.setProperty ( "hibernate.dialect","org.hibernate.dialect.MySQLDialect" );
+        //       properties.setProperty("hibernate.hbm2ddl.auto", "update");//update the schema
 //        properties.setProperty("hibernate.hbm2ddl.auto", "validate");//validate the schema, makes no changes to the database.
 //        properties.setProperty("hibernate.hbm2ddl.auto", "auto");//update the schema.
 //        properties.setProperty("hibernate.hbm2ddl.auto", "none");
