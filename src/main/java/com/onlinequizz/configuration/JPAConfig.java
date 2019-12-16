@@ -58,8 +58,8 @@ public class JPAConfig {
         Properties properties = new Properties();
         properties.setProperty ( "hibernate.dialect","org.hibernate.dialect.MySQL8Dialect" );
 //        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        properties.setProperty("hibernate.hbm2ddl.auto", "create");
-        //       properties.setProperty("hibernate.hbm2ddl.auto", "update");//update the schema
+       // properties.setProperty("hibernate.hbm2ddl.auto", "create");
+    properties.setProperty("hibernate.hbm2ddl.auto", "update");//update the schema
 //        properties.setProperty("hibernate.hbm2ddl.auto", "validate");//validate the schema, makes no changes to the database.
 //        properties.setProperty("hibernate.hbm2ddl.auto", "auto");//update the schema.
 //        properties.setProperty("hibernate.hbm2ddl.auto", "none");
