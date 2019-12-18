@@ -310,7 +310,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <a href="<c:url value="//create-question"/>"><button type="button" class="btn btn-primary">Create question</button></a>
+                        <a href="<c:url value="/create-question"/>"><button type="button" class="btn btn-primary">Create question</button></a>
                         <table class="table table-bordered">
                             <thead>
                             <tr>

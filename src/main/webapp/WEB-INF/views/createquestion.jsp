@@ -316,12 +316,12 @@
                                     <div class="form_main">
                                         <h4 class="heading"><strong>Quick </strong> Contact <span></span></h4>
                                         <div class="form">
-                                            <form action="contact_send_mail.php" method="post" id="contactFrm" name="contactFrm">
-                                                <input type="text" required="" placeholder="Question 1" value="" name="name" class="txt">
-                                                <input type="text" required="" placeholder="Question 2" value="" name="mob" class="txt">
-                                                <input type="text" required="" placeholder="Question 3" value="" name="email" class="txt">
-                                                <input type="text" required="" placeholder="Answer" value="" name="email" class="txt">
-                                                <textarea placeholder="Your Message" name="mess" type="text" class="txt_3">Question Context</textarea>
+                                            <form action="add" method="get" id="contactFrm" name="contactFrm" >
+                                                <input type="text" required="" placeholder="Answer 1" value="" name="answer1" class="txt" >
+                                                <input type="text" required="" placeholder="Answer 2" value="" name="answer2" class="txt">
+                                                <input type="text" required="" placeholder="Answer 3" value="" name="answer3" class="txt">
+                                                <input type="text" required="" placeholder="Answer Correct" value="" name="answerCorrect" class="txt">
+                                                <textarea placeholder="Your Message" name="context" type="text" class="txt_3">Question Context</textarea>
                                                 <input type="submit" value="submit" name="submit" class="txt2">
                                             </form>
                                         </div>
