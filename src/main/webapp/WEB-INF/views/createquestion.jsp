@@ -21,7 +21,7 @@
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
-
+    <link href="<c:url value='/Template/css/customCreateQuestion.css'/>" rel="stylesheet" type="text/css">
     <link href="<c:url value='/Template/vendor/fontawesome-free/css/all.min.css'/>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="<c:url value='/Template/css/custom.css'/>" rel="stylesheet" type="text/css">
@@ -310,33 +310,26 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <a href="<c:url value="//create-question"/>"><button type="button" class="btn btn-primary">Create question</button></a>
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr>
-                                <th scope="col">Question Context</th>
-                                <th scope="col">Correct Anwser</th>
-                                <th scope="col">Anwser 1</th>
-                                <th scope="col">Anwser 2</th>
-                                <th scope="col">Anwser 3</th>
-                                <th scope="col">""</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">Bootstrap 4 CDN and Starter Template</th>
-                                <td>1</td>
-                                <td>Cristina</td>
-                                <td>2.846</td>
-                                <td>3.846</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
-                                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form_main">
+                                        <h4 class="heading"><strong>Quick </strong> Contact <span></span></h4>
+                                        <div class="form">
+                                            <form action="contact_send_mail.php" method="post" id="contactFrm" name="contactFrm">
+                                                <input type="text" required="" placeholder="Question 1" value="" name="name" class="txt">
+                                                <input type="text" required="" placeholder="Question 2" value="" name="mob" class="txt">
+                                                <input type="text" required="" placeholder="Question 3" value="" name="email" class="txt">
+                                                <input type="text" required="" placeholder="Answer" value="" name="email" class="txt">
+                                                <textarea placeholder="Your Message" name="mess" type="text" class="txt_3">Question Context</textarea>
+                                                <input type="submit" value="submit" name="submit" class="txt2">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
