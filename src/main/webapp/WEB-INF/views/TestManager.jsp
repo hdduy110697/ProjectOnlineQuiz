@@ -21,7 +21,7 @@
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
-    <link href="<c:url value='/Template/css/customCreateQuestion.css'/>" rel="stylesheet" type="text/css">
+
     <link href="<c:url value='/Template/vendor/fontawesome-free/css/all.min.css'/>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="<c:url value='/Template/css/custom.css'/>" rel="stylesheet" type="text/css">
@@ -80,8 +80,8 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="login.html">Login</a>
-                    <a class="collapse-item" href="register.html">Register</a>
+                    <a class="collapse-item" href="<c:url value="/test-manager"/>">Test Manager</a>
+                    <a class="collapse-item" href="<c:url value="/question-manager"/>">Question Manager</a>
                     <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                     <div class="collapse-divider"></div>
                     <h6 class="collapse-header">Other Pages:</h6>
@@ -310,26 +310,37 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form_main">
-                                        <h4 class="heading"><strong>Quick </strong> Contact <span></span></h4>
-                                        <div class="form">
-                                            <form action="add" method="get" id="contactFrm" name="contactFrm" >
-                                                <input type="text" required="" placeholder="Answer 1" value="" name="answer1" class="txt" >
-                                                <input type="text" required="" placeholder="Answer 2" value="" name="answer2" class="txt">
-                                                <input type="text" required="" placeholder="Answer 3" value="" name="answer3" class="txt">
-                                                <input type="text" required="" placeholder="Answer Correct" value="" name="answerCorrect" class="txt">
-                                                <textarea placeholder="Your Message" name="context" type="text" class="txt_3">Question Context</textarea>
-                                                <input type="submit" value="submit" name="submit" class="txt2">
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div
-                            </div>
-                        </div>
-
+                        <a href="<c:url value="/create-test"/>"><button type="button" class="btn btn-primary">Create test</button></a>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">Quiz code</th>
+                                <th scope="col">Quiz name</th>
+                                <th scope="col">Total time</th>
+                                <th scope="col">Total Question</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Quiz type</th>
+                                <th scope="col">""</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${ListTest}" var="test">
+                                    <tr>
+                                        <th scope="row">${test.testId}</th>
+                                        <td>${test.testName}</td>
+                                        <td>${test.testTime}</td>
+                                        <td>${test.questionNumber}</td>
+                                        <td>${test.description}</td>
+                                        <td>${test.testType.testTypeName}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
+                                            <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

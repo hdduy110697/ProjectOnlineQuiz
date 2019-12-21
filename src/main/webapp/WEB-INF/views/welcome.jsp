@@ -80,7 +80,7 @@
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
-                    <a class="collapse-item" href="login.html">Login</a>
+                    <a class="collapse-item" href="<c:url value="/test-manager"/>">Test Manager</a>
                     <a class="collapse-item" href="register.html">Register</a>
                     <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                     <div class="collapse-divider"></div>
@@ -94,7 +94,7 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item active">
-            <a class="nav-link" href="tables.html">
+            <a class="nav-link" href="<c:url value="/"/>">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Tables</span></a>
         </li>
@@ -323,18 +323,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">Bootstrap 4 CDN and Starter Template</th>
-                                <td>1</td>
-                                <td>Cristina</td>
-                                <td>2.846</td>
-                                <td>3.846</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
-                                    <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-                                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
+                            <c:forEach items="${questions}" var="question">
+                                <tr>
+                                    <th scope="row">${question.content}</th>
+                                    <td>${question.correctAnswer}</td>
+                                    <td>${question.answer_1}</td>
+                                    <td>${question.answer_2}</td>
+                                    <td>${question.answer_3}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
+                                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>

@@ -316,13 +316,21 @@
                                     <div class="form_main">
                                         <h4 class="heading"><strong>Quick </strong> Contact <span></span></h4>
                                         <div class="form">
-                                            <form action="add" method="get" id="contactFrm" name="contactFrm" >
-                                                <input type="text" required="" placeholder="Answer 1" value="" name="answer1" class="txt" >
-                                                <input type="text" required="" placeholder="Answer 2" value="" name="answer2" class="txt">
-                                                <input type="text" required="" placeholder="Answer 3" value="" name="answer3" class="txt">
-                                                <input type="text" required="" placeholder="Answer Correct" value="" name="answerCorrect" class="txt">
-                                                <textarea placeholder="Your Message" name="context" type="text" class="txt_3">Question Context</textarea>
-                                                <input type="submit" value="submit" name="submit" class="txt2">
+                                            <form action="create-test/AddTest" method="get" id="contactFrm" name="contactFrm" >
+                                                <input type="text" required="" placeholder="Test Name" value="" name="testName" class="txt" ><br>
+                                                <textarea placeholder="Your Message" name="description" type="text" class="txt_3" aria-placeholder="Description"></textarea><br>
+                                                <input type="number" required="" placeholder="Test Time(minutes)" value="" name="testTime" class="txt"><br>
+                                                <input type="number" required="" placeholder="Question number" value="" name="questionNumber" class="txt">
+                                                <h3>Type name<h3>
+                                                <select name="testType">
+                                                    <option value="1TL5">1TL5</option>
+                                                    <option value="1TLH6">1TLH6</option>
+                                                    <option value="1TLH9">1TLH9</option>
+                                                    <option value="2TL10">2TL10</option>
+                                                </select>
+                                                    <input type="password" required="" placeholder="password" value="" name="password" class="txt">
+                                                <br>
+                                                <input type="submit" value="Save" name="submit" class="txt2">
                                             </form>
                                         </div>
                                     </div>
