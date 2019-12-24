@@ -4,6 +4,7 @@ import com.onlinequizz.Entity.Test;
 import com.onlinequizz.Service.ITestService;
 import com.onlinequizz.Service.ITestTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ public class TestManagerController {
     @RequestMapping("/test-manager")
     public String testManager(ModelMap model) {
         List<Test> tests=iTestService.findAllTest ();
+        Page<Test> page=iTestService.findAllPaging ( 0,3 );
         model.addAttribute ( "ListTest",tests );
         return "TestManager";
     }

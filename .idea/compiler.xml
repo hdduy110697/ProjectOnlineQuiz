@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="OnlineQuizz" />
         <module name="Spring4MVCHelloWorldNoXMLDemo" />
+        <module name="OnlineQuizz" />
       </profile>
     </annotationProcessing>
   </component>
