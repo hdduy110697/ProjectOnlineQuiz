@@ -20,16 +20,17 @@
 
     <title>SB Admin 2 - Tables</title>
 
-    <!-- Custom fonts for this template -->
 
+    <!-- Custom fonts for this template -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
     <link href="<c:url value='/Template/vendor/fontawesome-free/css/all.min.css'/>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="<c:url value='/Template/css/custom.css'/>" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
     <link href="<c:url value='/Template/css/sb-admin-2.min.css'/>" rel="stylesheet">
-
     <!-- Custom styles for this page -->
     <link href="<c:url value='/Template/vendor/datatables/dataTables.bootstrap4.min.css'/>" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 </head>
 
@@ -42,7 +43,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value="/test-manager"/>">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -339,6 +340,39 @@
                             </c:forEach>
                             </tbody>
                         </table>
+                        <%--                        paging--%>
+                        <div class="container">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination" id="pagination"></ul>
+                            </nav>
+                        </div>
+                        <form action="<c:url value='/quest-manager/page'/>" id="formSubmit" method="get">
+                            <input type="hidden" value="" id="page" name="page"/>
+                            <input type="hidden" value="" id="limit" name="limit"/>
+                        </form>
+                        <p>${totalPage}</p>
+                        <script type="text/javascript">
+                            var totalPages = ${totalPage};
+                            var currentPage = ${currentPage};
+                            $(function () {
+                                window.pagObj = $('#pagination').twbsPagination({
+                                    totalPages: totalPages,
+                                    visiblePages: 10,
+                                    startPage: currentPage,
+                                    onPageClick: function (event, page) {
+                                        console.info(page + ' (from options)');
+                                        if (currentPage != page) {
+                                            $('#limit').val(3);
+                                            $('#page').val(page);
+                                            $('#formSubmit').submit();
+                                        }
+                                    }
+                                }).on('page', function (event, page) {
+                                    console.info(page + ' (from event listening)');
+                                });
+                            });
+                        </script>
+                        <%--end paging--%>
                     </div>
                 </div>
             </div>
@@ -395,9 +429,12 @@
 <script src="<c:url value='/Template/vendor/jquery-easing/jquery.easing.min.js'/>"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+<script src="<c:url value='/Template/js/sb-admin-2.min.js'/>"></script>
 
 <!-- Page level plugins -->
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<c:url value='/Template/js/paging/jquery.twbsPagination.min.js'/>"></script>
 
 </body>
 

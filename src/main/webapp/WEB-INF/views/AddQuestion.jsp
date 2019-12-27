@@ -20,20 +20,34 @@
 
     <title>SB Admin 2 - Tables</title>
 
+
     <!-- Custom fonts for this template -->
-    <link href="<c:url value='/Template/css/customCreateQuestion.css'/>" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
     <link href="<c:url value='/Template/vendor/fontawesome-free/css/all.min.css'/>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="<c:url value='/Template/css/custom.css'/>" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
     <link href="<c:url value='/Template/css/sb-admin-2.min.css'/>" rel="stylesheet">
-
     <!-- Custom styles for this page -->
     <link href="<c:url value='/Template/vendor/datatables/dataTables.bootstrap4.min.css'/>" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 </head>
 
 <body id="page-top">
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#checkBtn').click(function() {
+            checked = $("input[type=checkbox]:checked").length;
+alert(checked);
+            if(!checked) {
+                alert("You must check at least one checkbox.");
+                return false;
+            }
+
+        });
+    });
+</script>
 
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -310,27 +324,76 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form_main">
-                                        <h4 class="heading"><strong>Quick </strong> Contact <span></span></h4>
-                                        <div class="form">
-                                            <form action="add" method="get" id="contactFrm" name="contactFrm" >
-                                                <input type="text" required="" placeholder="Answer 1" value="" name="answer1" class="txt" >
-                                                <input type="text" required="" placeholder="Answer 2" value="" name="answer2" class="txt">
-                                                <input type="text" required="" placeholder="Answer 3" value="" name="answer3" class="txt">
-                                                <input type="text" required="" placeholder="Answer Correct" value="" name="answerCorrect" class="txt">
-                                                <textarea placeholder="Your Message" name="context" type="text" class="txt_3">Question Context</textarea>
-                                                <input type="submit" value="submit" name="submit" class="txt2">
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div
-                            </div>
-                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Question Context</th>
+                                <th scope="col">Correct Anwser</th>
+                                <th scope="col">Anwser 1</th>
+                                <th scope="col">Anwser 2</th>
+                                <th scope="col">Anwser 3</th>
+                                <th scope="col">""</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <form action="add-question/add" method="get" id="contactForm" name="contactFrm" >
+                                <input type="hidden" required=""value="${idTest}" name="idTest" class="txt" >
 
-                    </div>
+
+                            <c:forEach items="${questions}" var="question">
+                                <tr>
+                                    <th scope="row">${question.content}</th>
+                                    <td><input type="checkbox"value="${question.questionId}" name="questionId" class="txt" ></td>
+                                    <td>${question.correctAnswer}</td>
+                                    <td>${question.answer_1}</td>
+                                    <td>${question.answer_2}</td>
+                                    <td>${question.answer_3}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
+                                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
+                                        <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                        <input type="submit" value="save" name="save" id="checkBtn" dclass="txt2">
+                        </form>
+                       <%--                         paging
+                        <div class="container">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination" id="pagination"></ul>
+                            </nav>
+                        </div>
+                        <form action="<c:url value='/questions/page'/>" id="formSubmit" method="get">
+                            <input type="hidden" value="" id="page" name="page"/>
+                            <input type="hidden" value="" id="limit" name="limit"/>
+                        </form>
+                        <p>${totalPage}</p>
+                        <script type="text/javascript">
+                            var totalPages = ${totalPage};
+                            var currentPage = ${currentPage};
+                            $(function () {
+                                window.pagObj = $('#pagination').twbsPagination({
+                                    totalPages: totalPages,
+                                    visiblePages: 10,
+                                    startPage: currentPage,
+                                    onPageClick: function (event, page) {
+                                        console.info(page + ' (from options)');
+                                        if (currentPage != page) {
+                                            $('#limit').val(3);
+                                            $('#page').val(page);
+                                            $('#formSubmit').submit();
+                                        }
+                                    }
+                                }).on('page', function (event, page) {
+                                    console.info(page + ' (from event listening)');
+                                });
+                            });
+                        </script>
+                        end paging
+--%>                    </div>
                 </div>
             </div>
 
@@ -381,14 +444,16 @@
 <!-- Bootstrap core JavaScript-->
 <script src="<c:url value='/Template/vendor/jquery/jquery.min.js'/>"></script>
 <script src="<c:url value='/Template/vendor/bootstrap/js/bootstrap.bundle.min.js'/>"></script>
-
 <!-- Core plugin JavaScript-->
 <script src="<c:url value='/Template/vendor/jquery-easing/jquery.easing.min.js'/>"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+<script src="<c:url value='/Template/js/sb-admin-2.min.js'/>"></script>
 
 <!-- Page level plugins -->
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="<c:url value='/Template/js/paging/jquery.twbsPagination.min.js'/>"></script>
 
 </body>
 

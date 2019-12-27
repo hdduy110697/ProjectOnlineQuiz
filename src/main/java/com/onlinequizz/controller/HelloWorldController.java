@@ -18,9 +18,7 @@ public class HelloWorldController {
 	ITestService iTestService;
 	@RequestMapping(method = RequestMethod.GET)
 	public String sayHello(ModelMap model) {
-		List<Test> tests=iTestService.findAllTest ();
-		model.addAttribute ( "ListTest",tests );
-		return "TestManager";
+		return "redirect:/test-manager";
 	}
 
 

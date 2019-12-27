@@ -41,7 +41,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<c:url value="/test-manager"/>">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -332,7 +332,7 @@
                                         <td>${test.description}</td>
                                         <td>${test.testType.testTypeName}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
+                                            <a href="<c:url value="/test-manager/add-question?idTest=${test.testId}"/>"><button type="button" class="btn btn-primary">create question</button></a>
                                             <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
                                             <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
                                         </td>
@@ -347,13 +347,26 @@
                             <ul class="pagination" id="pagination"></ul>
                         </nav>
                     </div>
+                    <form action="<c:url value='/test-manager/page'/>" id="formSubmit" method="get">
+                        <input type="hidden" value="" id="page" name="page"/>
+                        <input type="hidden" value="" id="limit" name="limit"/>
+                    </form>
+                    <p>${totalPage}</p>
                     <script type="text/javascript">
+                        var totalPages = ${totalPage};
+                        var currentPage = ${currentPage};
                         $(function () {
                             window.pagObj = $('#pagination').twbsPagination({
-                                totalPages: 35,
+                                totalPages: totalPages,
                                 visiblePages: 10,
+                                startPage: currentPage,
                                 onPageClick: function (event, page) {
                                     console.info(page + ' (from options)');
+                                    if (currentPage != page) {
+                                        $('#limit').val(3);
+                                        $('#page').val(page);
+                                        $('#formSubmit').submit();
+                                    }
                                 }
                             }).on('page', function (event, page) {
                                 console.info(page + ' (from event listening)');

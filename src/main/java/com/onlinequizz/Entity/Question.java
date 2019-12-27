@@ -20,7 +20,7 @@ public class Question {
     private String content;
     @Column(name = "correct_answer",length = 100)
     private String correctAnswer;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "test_question",joinColumns = {@JoinColumn(name = "question_id",referencedColumnName = "question_id")},
             inverseJoinColumns = {@JoinColumn(name = "test_id",referencedColumnName = "test_id")})
     private Set<Test> questions;

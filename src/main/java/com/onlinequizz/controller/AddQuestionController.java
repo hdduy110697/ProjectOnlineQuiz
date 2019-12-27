@@ -1,7 +1,9 @@
 package com.onlinequizz.controller;
 
 import com.onlinequizz.Entity.Question;
+import com.onlinequizz.Entity.Test;
 import com.onlinequizz.Service.IQuestionService;
+import com.onlinequizz.Service.ITestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -16,14 +18,40 @@ import java.util.List;
 public class AddQuestionController {
     @Autowired
     IQuestionService iQuestionService;
-    @RequestMapping("/create-question")
+    @Autowired
+    ITestService iTestService;
+    @RequestMapping("/create-question*")
     public String createQuestion(ModelMap model) {
         return "createquestion";
     }
     @RequestMapping("/question-manager")
     public String questionManager(ModelMap model) {
-        List<Question> questions=iQuestionService.findAllQuestion ();
-        model.addAttribute ( "questions",questions );
+        Integer numAll=iQuestionService.getNumQuestion ();
+        Integer numRecordPage=3;
+        Integer numPage=0;
+        if(numAll%numRecordPage==0)
+            numPage=(numAll/numRecordPage);
+        else
+            numPage=(numAll/numRecordPage)+1;
+        List<Question> pageList=iQuestionService.findAllPaging ( 1,numRecordPage );
+        model.addAttribute ( "totalPage" ,numPage);
+        model.addAttribute ( "currentPage",1 );
+        model.addAttribute ( "questions",pageList );
+        return "welcome";
+    }
+    @RequestMapping("/quest-manager/page")
+    public String questionPage(@RequestParam Integer page, @RequestParam Integer limit,ModelMap model) {
+        Integer numAll=iQuestionService.getNumQuestion ();
+        Integer numRecordPage=3;
+        Integer numPage=0;
+        if(numAll%numRecordPage==0)
+            numPage=(numAll/numRecordPage);
+        else
+            numPage=(numAll/numRecordPage)+1;
+        List<Question>  pageList=iQuestionService.findAllPaging ( page,numRecordPage );
+        model.addAttribute ( "totalPage" ,numPage);
+        model.addAttribute ( "currentPage",page );
+        model.addAttribute ( "questions",pageList );
         return "welcome";
     }
 
@@ -32,6 +60,6 @@ public class AddQuestionController {
     ,@RequestParam String answer3,@RequestParam String answerCorrect,@RequestParam String context)
     {
         iQuestionService.saveQuestion ( answer1,answer2,answer3,context,answerCorrect );
-        return "createquestion";
+        return "redirect:/question-manager";
     }
 }

@@ -28,7 +28,7 @@ public class Test {
     @JoinColumn(name = "test_type_id")
     private TestType testType;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(name = "test_question",joinColumns = {@JoinColumn(name = "test_id",referencedColumnName = "test_id")},
             inverseJoinColumns = {@JoinColumn(name = "question_id",referencedColumnName = "question_id")})
     private Set<Question> questions;
