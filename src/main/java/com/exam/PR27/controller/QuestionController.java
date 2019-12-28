@@ -6,8 +6,11 @@
 package com.exam.PR27.controller;
 
 import com.exam.PR27.Dao.QuestionDao;
+import com.exam.PR27.Dao.TestDao;
 import com.exam.PR27.entity.Question;
 import java.util.List;
+
+import com.exam.PR27.entity.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +30,8 @@ public class QuestionController {
     @Autowired
     private QuestionDao questionService;
 
+    @Autowired
+    private TestDao testDao;
     @GetMapping("/question/list")
     public String listQuestion(Model model) {
         List<Question> list = questionService.findAll();
@@ -57,7 +62,15 @@ public class QuestionController {
     }
     @GetMapping("/question/delete")
     public String deleteQuestion(@RequestParam(name = "id") int id) {
-        questionService.deleteById(id);
+        Question question = questionService.findById ( id ).get ();
+        for (Test t :
+             question.getTest ()) {
+            t.getQuestion ().remove ( question );
+            testDao.save ( t );
+        }
+        question.getTest ().clear ();
+        questionService.save (question );
+        questionService.deleteById ( id );
         return "redirect:/question/list";
     }
     

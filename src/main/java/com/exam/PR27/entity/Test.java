@@ -6,13 +6,7 @@
 package com.exam.PR27.entity;
 
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  *
@@ -33,7 +27,13 @@ public class Test {
     @JoinColumn(name = "Test_Type_Id")
     private  TestType testType;
     
-    @ManyToMany
+    @ManyToMany(        cascade =
+            {
+                    CascadeType.DETACH,
+                    CascadeType.MERGE,
+                    CascadeType.REFRESH,
+                    CascadeType.PERSIST
+            })
     private List<Question> question;
 
     public Test() {

@@ -28,7 +28,13 @@ public class Question {
     private String answer3;
     private String content;
     private String correctAnswer;
-    @ManyToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "question",cascade =
+            {
+                    CascadeType.DETACH,
+                    CascadeType.MERGE,
+                    CascadeType.REFRESH,
+                    CascadeType.PERSIST
+            })
     private List<Test> test;
 
     public Question() {
