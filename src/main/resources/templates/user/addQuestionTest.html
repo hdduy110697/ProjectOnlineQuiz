@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace = "~{fragment/fragments ::head}">
+    </head>
+    <body >
+
+        <div class="main-two container clearfix">
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <nav th:replace = "~{fragment/fragments ::nav-info}">
+
+                    </nav>
+
+                </div>
+                <div class="col-md-9 col-sm-9 no-pl">
+                    <div class="acc-tabs ec-tabs">
+                        <div class="tab-content">
+                            <div  class="tab-pane fade active in">
+                                <div class="dota2-tab-box">
+                                    <div class="table-box" >
+                                        <form action="#" th:action="@{/test/addQuestion}" th:object="${testAddQuestionDto}" method="post">
+                                            <table class="table table-qh table-striped">
+
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tick</th>
+                                                        <th>ID</th>
+                                                        <th>Question content</th>
+                                                        <th>Corect Answer</th>
+                                                        <th>Answer 1</th>
+                                                        <th>Answer 2</th>
+                                                        <th>Answer 3</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <th:block th:each="question, state :${listQuestion}">
+                                                        <tr th:class="${state.odd}? 'hover_tr odd':'hover_tr even'" >
+                                                            <td>
+                                                                <input  th:field="*{listQuestionId}" type="checkbox" th:value="${question.id}"/>
+                                                            </td>
+                                                            <td th:utext="${question.id}">
+
+                                                            </td>
+                                                            <td th:utext="${question.content}">
+
+                                                            </td>
+                                                            <td th:utext="${question.correctAnswer}">
+
+                                                            </td>
+                                                            <td th:utext="${question.answer1}">
+
+                                                            </td>
+                                                            <td th:utext="${question.answer2}">
+
+                                                            </td>
+                                                            <td th:utext="${question.answer3}">
+
+                                                            </td>   
+                                                            <td>
+                                                                 
+
+                                                            </td> 
+
+                                                        </tr>
+                                                    </th:block>
+                                                    
+                                                </tbody>
+                                            </table>
+                                            <input type="hidden" th:field="*{testId}" />
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div th:replace = "~{fragment/fragments ::footer}">
+
+        </div>
+    </body>
+
+</html>

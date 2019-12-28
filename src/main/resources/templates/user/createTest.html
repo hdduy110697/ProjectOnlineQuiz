@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace = "~{fragment/fragments ::head}">
+    </head>
+    <body >
+
+        <div class="main-two container clearfix">
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <nav th:replace = "~{fragment/fragments ::nav-info}">
+
+                    </nav>
+
+                </div>
+                <div class="col-md-9 col-sm-9 no-pl">
+                    <div class="panel-body">
+                        <form action="#" th:action="@{/test/save}" th:object="${testDto}" method="post" class="form-signin">
+                            <div class="form-group">
+                                <label>Test name</label>
+                                <input type="text" th:field="*{testName}" 
+                                       class="form-control" placeholder="testName"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" th:field="*{description}" 
+                                       class="form-control" placeholder="description"/>
+                            </div>
+                            <div class="form-group">
+                                <label>Test time(minutes)</label>
+                                <input type="number" th:field="*{testTime}" 
+                                       class="form-control"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Question Number</label>
+                                <input type="number" th:field="*{questionNumber}" 
+                                       class="form-control"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Type name</label>
+                                <select class="form-control" th:field="*{testTypeId}"  >
+                                    <option value="0" selected class="label-left">Please select</option>
+                                    <th:block th:each="testType :${listTestType}">
+                                        <option th:value="${testType.id}" th:text="${testType.name}"></option>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" th:field="*{password}" 
+                                       class="form-control"/>
+                            </div>
+                            <input th:field="*{id}" type="hidden"/>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="reset" class="btn btn-primary">Cancel</button>
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div> 
+            <div th:replace = "~{fragment/fragments ::footer}">
+
+            </div>
+    </body>
+
+</html>
