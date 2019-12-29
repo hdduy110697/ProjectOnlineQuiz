@@ -69,6 +69,35 @@
                                         </th:block>
                                     </tbody>
                                 </table>
+                            <nav aria-label="Pagination" th:if="${list.totalPages gt 0}">
+                                    <ul class="pagination justify-content-center font-weight-medium">
+                                        <li class="page-item" th:classappend="${list.number eq 0} ? 'disabled'">
+                                            <a class="page-link svg-icon"
+                                               th:href="@{/test/list?page={id}(id=${list.number lt 2 ? 1 : list.number})}"
+                                               aria-label="Previous">
+                                                Lùi
+                                            </a>
+                                        </li>
+                                        <li class="page-item" th:classappend="${i eq list.number + 1} ? 'active'"
+                                            th:each="i : ${#numbers.sequence( list.number + 1, list.totalPages > 10 + list.number ? list.number + 10 : list.totalPages, 1)}">
+                                            <a class="page-link" th:href="@{/test/list?page={id}(id=${i})}" th:text="${i}"
+                                               th:title="${'Page '+ i}"
+                                               rel="tooltip"></a>
+                                        </li>
+                                        <li class="page-item disabled" th:if="${list.number + 10 < list.totalPages}">
+                                            <a class="page-link svg-icon" href="#">
+                                                <span data-feather="more-horizontal" width="20" height="20"></span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item" th:classappend="${list.number + 1 eq list.totalPages} ? 'disabled'">
+                                            <a class="page-link svg-icon" th:href="@{/test/list?page={id}(id=${list.number + 2})}"
+                                               aria-label="Next"
+                                               title="Next Page" rel="tooltip">
+                                               Tới
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
                             </div>      
                         </div>
 
