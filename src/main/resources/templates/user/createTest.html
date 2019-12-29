@@ -20,22 +20,26 @@
                                 <label>Test name</label>
                                 <input type="text" th:field="*{testName}" 
                                        class="form-control" placeholder="testName"/>
+                                <span th:if="${#fields.hasErrors('testName')}" th:errors="*{testName}"></span>
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
                                 <input type="text" th:field="*{description}" 
                                        class="form-control" placeholder="description"/>
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
                             </div>
                             <div class="form-group">
                                 <label>Test time(minutes)</label>
                                 <input type="number" th:field="*{testTime}" 
                                        class="form-control"/>
+                                <span th:if="${#fields.hasErrors('testTime')}" th:errors="*{testTime}"></span>
                             </div>
 
                             <div class="form-group">
                                 <label>Question Number</label>
                                 <input type="number" th:field="*{questionNumber}" 
                                        class="form-control"/>
+                                <span th:if="${#fields.hasErrors('questionNumber')}" th:errors="*{questionNumber}"></span>
                             </div>
 
                             <div class="form-group">
@@ -46,11 +50,13 @@
                                         <option th:value="${testType.id}" th:text="${testType.name}"></option>
                                     </th:block>
                                 </select>
+                                <span th:if="${#fields.hasErrors('testTypeId')}" th:errors="*{testTypeId}"></span>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
                                 <input type="password" th:field="*{password}" 
                                        class="form-control"/>
+                                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                             </div>
                             <input th:field="*{id}" type="hidden"/>
                             <button type="submit" class="btn btn-primary">Submit</button>

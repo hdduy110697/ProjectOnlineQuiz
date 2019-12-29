@@ -31,13 +31,14 @@
                                                         <th>Answer 1</th>
                                                         <th>Answer 2</th>
                                                         <th>Answer 3</th>
-                                                        <th>Action</th>
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
 
                                                     <th:block th:each="question, state :${listQuestion}">
                                                         <tr th:class="${state.odd}? 'hover_tr odd':'hover_tr even'" >
+
                                                             <td>
                                                                 <input  th:field="*{listQuestionId}" type="checkbox" th:value="${question.id}"/>
                                                             </td>
@@ -59,16 +60,15 @@
                                                             <td th:utext="${question.answer3}">
 
                                                             </td>   
-                                                            <td>
-                                                                 
 
-                                                            </td> 
 
                                                         </tr>
                                                     </th:block>
-                                                    
+                                                   
                                                 </tbody>
+                                                 
                                             </table>
+                                            <span th:if="${#fields.hasErrors('listQuestionId')}" th:errors="*{listQuestionId}"></span><br/>
                                             <input type="hidden" th:field="*{testId}" />
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                         </form>

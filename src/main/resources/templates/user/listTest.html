@@ -60,6 +60,22 @@
 
                                                     </tr>
                                                 </th:block>
+                                                <tr>
+                                                    <td class="hover_tr odd" colspan="8">
+                                                        <div class="page-info pager_template_place">		
+                                                            <ul class="pagination pagination">
+
+                                                                <th:block th:each="i :${#numbers.sequence(1, list.totalPages, 1)}">
+
+                                                                    <th:block th:if="${(i < (list.number+5))&&(i > (list.number-5))} ">
+                                                                        <li class="goto_page "><a th:href="@{/test/list?page={id}(id=${i})}" th:classappend="${i eq list.number + 1} ? 'active'" th:text="${i}"></a></li>
+                                                                    </th:block>
+                                                                </th:block>
+                                                                <li class="goto_next"><a th:href="@{/test/list?page={id}(id=${list.number +2})}"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
+                                                            </ul>		
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>

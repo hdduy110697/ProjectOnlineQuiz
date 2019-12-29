@@ -11,7 +11,11 @@ import com.exam.PR27.entity.Question;
 import java.util.List;
 
 import com.exam.PR27.entity.Test;
+import com.exam.PR27.validation.QuestionValidator;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,9 +36,21 @@ public class QuestionController {
 
     @Autowired
     private TestDao testDao;
+    @Autowired
+    private QuestionValidator questionValidator;
+    
     @GetMapping("/question/list")
-    public String listQuestion(Model model) {
-        List<Question> list = questionService.findAll();
+    public String listQuestion(Model model ,HttpServletRequest request) {
+        
+        int page = 0; 
+        int size = 3; 
+        if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
+            page = Integer.parseInt(request.getParameter("page")) - 1;
+        }
+        if (request.getParameter("size") != null && !request.getParameter("size").isEmpty()) {
+            size = Integer.parseInt(request.getParameter("size"));
+        }
+        Page<Question> list = questionService.findAll(PageRequest.of(page, size));
         model.addAttribute("list", list);
         return "/user/listQuestion";
     }
@@ -50,6 +66,11 @@ public class QuestionController {
     @PostMapping("/question/save")
     public String saveQuestion(@ModelAttribute("question") Question question,
             Model model, BindingResult bindingResult) {
+        questionValidator.validate(question, bindingResult);
+        if (bindingResult.hasErrors()) {
+         
+            return "/user/createQuestion";
+        }
         question = questionService.save(question);
         return "redirect:/question/list";
     }

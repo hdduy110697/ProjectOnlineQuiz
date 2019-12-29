@@ -6,6 +6,8 @@
 package com.exam.PR27.Dao;
 
 import com.exam.PR27.entity.Test;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -13,5 +15,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author HoangMinh
  */
 public interface TestDao extends JpaRepository<Test, Integer> {
-    
+     
 }
