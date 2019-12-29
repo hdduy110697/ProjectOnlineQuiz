@@ -8,6 +8,7 @@ package com.exam.PR27.entity;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,20 +21,27 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Question {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "question_id", length = 10)
     private int id;
+    @Column(name = "answer_1", length = 100)
     private String answer1;
+    @Column(name = "answer_2", length = 100)
     private String answer2;
+    @Column(name = "answer_3", length = 100)
     private String answer3;
+    @Column(name = "content", length = 100)
     private String content;
+    @Column(name = "correct_answer", length = 100)
     private String correctAnswer;
-    @ManyToMany(mappedBy = "question",cascade =
-            {
-                    CascadeType.DETACH,
-                    CascadeType.MERGE,
-                    CascadeType.REFRESH,
-                    CascadeType.PERSIST
+    @ManyToMany(mappedBy = "question", cascade
+            = {
+                CascadeType.DETACH,
+                CascadeType.MERGE,
+                CascadeType.REFRESH,
+                CascadeType.PERSIST
             })
     private List<Test> test;
 
@@ -95,7 +103,5 @@ public class Question {
     public void setTest(List<Test> test) {
         this.test = test;
     }
-    
-    
-    
+
 }

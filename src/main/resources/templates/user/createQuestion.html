@@ -3,68 +3,82 @@
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace = "~{fragment/fragments ::head}">
     </head>
-    <body >
+    <body id='page-top' >
 
-        <div class="main-two container clearfix">
-            <div class="row">
-                <div class="col-md-3 col-sm-3">
-                    <nav th:replace = "~{fragment/fragments ::nav-info}">
+        <div id="wrapper">
+            <ul th:replace = "~{fragment/fragments ::nav-info}">
+
+            </ul>
+            <div  id="content-wrapper" class="d-flex flex-column">
+                <div  id="content">
+                    <nav th:replace = "~{fragment/fragments ::header}">
 
                     </nav>
+                    <div class="container-fluid">
+                        <h1 class="h3 mb-2 text-gray-800">Create Question</h1>
+                        <p class="mb-4"></p>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <form action="#" th:action="@{/question/save}" th:object="${question}" method="post" class="form-signin">
+                                    <div class="form-group">
+                                        <label>Content</label>
+                                        <input type="text" th:field="*{content}" 
+                                               class="form-control" placeholder="Content"/>
+                                        <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
 
-                </div>
-                <div class="col-md-9 col-sm-9 no-pl">
-                    <div class="panel-body">
-                        <form action="#" th:action="@{/question/save}" th:object="${question}" method="post" class="form-signin">
-                            <div class="form-group">
-                                <label>content</label>
-                                <input type="text" th:field="*{content}" 
-                                       class="form-control" placeholder="content"/>
-                                 <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
-                                
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Correct Answer</label>
+                                        <input type="text" th:field="*{correctAnswer}" 
+                                               class="form-control" placeholder="Correct Answer"/>
+                                        <span th:if="${#fields.hasErrors('correctAnswer')}" th:errors="*{correctAnswer}"></span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Answer 1</label>
+                                        <input type="text" th:field="*{answer1}" 
+                                               class="form-control" placeholder="Answer 1"/>
+                                        <span th:if="${#fields.hasErrors('answer1')}" th:errors="*{answer1}"></span>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Answer 2</label>
+                                        <input type="text" th:field="*{answer2}" 
+                                               class="form-control" placeholder="Answer 2"/>
+                                        <span th:if="${#fields.hasErrors('answer2')}" th:errors="*{answer2}"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Answer 3</label>
+                                        <input  type="text" th:field="*{answer3}" 
+                                                class="form-control" placeholder="Answer 3"/>
+                                        <span th:if="${#fields.hasErrors('answer3')}" th:errors="*{answer3}"></span>
+
+                                    </div>
+                                    <input th:field="*{id}" type="hidden"/>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="reset" class="btn btn-primary">Cancel</button>
+
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label>CorrectAnswer</label>
-                                <input type="text" th:field="*{correctAnswer}" 
-                                       class="form-control" placeholder="correctAnswer"/>
-                                <span th:if="${#fields.hasErrors('correctAnswer')}" th:errors="*{correctAnswer}"></span>
-                              
-                            </div>
-                            <div class="form-group">
-                                <label>answer1</label>
-                                <input type="text" th:field="*{answer1}" 
-                                       class="form-control" placeholder="answer1"/>
-                                <span th:if="${#fields.hasErrors('answer1')}" th:errors="*{answer1}"></span>
-                                
-                            </div>
-
-                            <div class="form-group">
-                                <label>answer2</label>
-                                <input type="text" th:field="*{answer2}" 
-                                       class="form-control" placeholder="answer2"/>
-                                <span th:if="${#fields.hasErrors('answer2')}" th:errors="*{answer2}"></span>
-                            </div>
-
-                            <div class="form-group">
-                                <label>answer3</label>
-                                <input  type="text" th:field="*{answer3}" 
-                                       class="form-control" placeholder="answer3"/>
-                                 <span th:if="${#fields.hasErrors('answer3')}" th:errors="*{answer3}"></span>
-                               
-                            </div>
-                            <input th:field="*{id}" type="hidden"/>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <button type="reset" class="btn btn-primary">Cancel</button>
-
-                        </form>
-
-
+                        </div>
                     </div>
                 </div>
-            </div> 
-            <div th:replace = "~{fragment/fragments ::footer}">
+                <footer th:replace = "~{fragment/fragments ::footer}">
 
+                </footer>
             </div>
+
+        </div>
+
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/js/jquery.easing.min.js}"></script>
+        <script th:src="@{/js/sb-admin-2.min.js}"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 
 </html>

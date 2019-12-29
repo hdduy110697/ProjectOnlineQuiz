@@ -132,6 +132,7 @@ public class TestController {
         TestAddQuestionDto testAddQuestionDto = new TestAddQuestionDto();
         testAddQuestionDto.setTestId(test.getId());
         testAddQuestionDto.setListQuestionId(listQuestionTestId);
+        model.addAttribute("testName", test.getTestName());
         model.addAttribute("listQuestion", listQuestion);
         model.addAttribute("testAddQuestionDto", testAddQuestionDto);
         return "/user/addQuestionTest";

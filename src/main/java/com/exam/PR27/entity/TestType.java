@@ -6,6 +6,7 @@
 package com.exam.PR27.entity;
 
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,9 +19,12 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class TestType {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "test_type_id", length = 10)
     private int id;
+    @Column(name = "test_type_name", length = 50)
     private String name;
     @OneToMany(mappedBy = "testType")
     private List<Test> test;
@@ -51,6 +55,5 @@ public class TestType {
     public void setTest(List<Test> test) {
         this.test = test;
     }
-    
-    
+
 }

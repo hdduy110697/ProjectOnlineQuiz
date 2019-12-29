@@ -68,7 +68,6 @@ public class QuestionController {
             Model model, BindingResult bindingResult) {
         questionValidator.validate(question, bindingResult);
         if (bindingResult.hasErrors()) {
-         
             return "/user/createQuestion";
         }
         question = questionService.save(question);
@@ -94,8 +93,5 @@ public class QuestionController {
         questionService.deleteById ( id );
         return "redirect:/question/list";
     }
-    
-    
-    
     
 }

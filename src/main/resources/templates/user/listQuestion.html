@@ -3,85 +3,86 @@
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace = "~{fragment/fragments ::head}">
     </head>
-    <body >
+    <body id="page-top">
+        <div id="wrapper">
+            <ul th:replace = "~{fragment/fragments ::nav-info}">
 
-        <div class="main-two container clearfix">
-            <div class="row">
-                <div class="col-md-3 col-sm-3">
-                    <nav th:replace = "~{fragment/fragments ::nav-info}">
+            </ul>
+            <div  id="content-wrapper" class="d-flex flex-column">
+                <div  id="content">
+                    <nav th:replace = "~{fragment/fragments ::header}">
+
                     </nav>
-                </div>
-                <div class="col-md-9 col-sm-9 no-pl">
-                    <div class="acc-tabs ec-tabs">
-                        <div class="tab-content">
-                            <div  class="tab-pane fade active in">
-                                <div class="dota2-tab-box">
-                                    <div class="table-box" >
-                                        <table class="table table-qh table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Question content</th>
-                                                    <th>Corect Answer</th>
-                                                    <th>Answer 1</th>
-                                                    <th>Answer 2</th>
-                                                    <th>Answer 3</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <th:block th:each="question, state :${list}">
-                                                    <tr th:class="${state.odd}? 'hover_tr odd':'hover_tr even'" >
-                                                        <td th:utext="${question.content}">
-
-                                                        </td>
-                                                        <td th:utext="${question.correctAnswer}">
-
-                                                        </td>
-                                                        <td th:utext="${question.answer1}">
-
-                                                        </td>
-                                                        <td th:utext="${question.answer2}">
-
-                                                        </td>
-                                                        <td th:utext="${question.answer3}">
-
-                                                        </td> 
-                                                        <td>
-                                                            <a class="btn btn-primary" th:href="@{/question/delete(id=${question.id})}">Xoá</a>
-                                                            <a class="btn btn-primary" th:href="@{/question/edit(id=${question.id})}">Sửa</a>
-                                                        </td>
-
-                                                    </tr>
-                                                </th:block>
-                                                <tr>
-                                                    <td class="hover_tr odd" colspan="8">
-                                                        <div class="page-info pager_template_place">		
-                                                            <ul class="pagination pagination">
-
-                                                                <th:block th:each="i :${#numbers.sequence(1, list.totalPages, 1)}">
-
-                                                                    <th:block th:if="${(i < (list.number+5))&&(i > (list.number-5))} ">
-                                                                        <li class="goto_page "><a th:href="@{/question/list?page={id}(id=${i})}" th:classappend="${i eq list.number + 1} ? 'active'" th:text="${i}"></a></li>
-                                                                    </th:block>
-                                                                </th:block>
-                                                                <li class="goto_next"><a th:href="@{/question/list?page={id}(id=${list.number +2})}"><span class="glyphicon glyphicon-triangle-right"></span></a></li>
-                                                            </ul>		
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="container-fluid">
+                        <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                        <p class="mb-4"></p>
                     </div>
-                </div>
-            </div> 
-        </div>
-        <div th:replace = "~{fragment/fragments ::footer}">
 
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <a th:href="@{/question/create}"/><button type="button" class="btn btn-primary">Create Question</button></a>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Question content</th>
+                                            <th>Corect Answer</th>
+                                            <th>Answer 1</th>
+                                            <th>Answer 2</th>
+                                            <th>Answer 3</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <th:block th:each="question, state :${list}">
+                                            <tr th:class="${state.odd}? 'hover_tr odd':'hover_tr even'" >
+                                                <td th:utext="${question.content}">
+
+                                                </td>
+                                                <td th:utext="${question.correctAnswer}">
+
+                                                </td>
+                                                <td th:utext="${question.answer1}">
+
+                                                </td>
+                                                <td th:utext="${question.answer2}">
+
+                                                </td>
+                                                <td th:utext="${question.answer3}">
+
+                                                </td> 
+                                                <td>
+                                                    <a th:href="@{/question/delete(id=${question.id})}">
+                                                        <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                                    <a th:href="@{/question/edit(id=${question.id})}">
+                                                        <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button></a>
+                                                </td>
+
+                                            </tr>
+                                        </th:block>
+
+                                    </tbody>
+                                </table>
+                            </div>      
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <footer th:replace = "~{fragment/fragments ::footer}">
+
+                </footer>
+            </div>
         </div>
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/js/jquery.easing.min.js}"></script>
+        <script th:src="@{/js/sb-admin-2.min.js}"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 
 </html>
